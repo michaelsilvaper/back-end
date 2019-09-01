@@ -55,7 +55,7 @@ require('./config/passport');
 
 
 var CsvUtil = require('./app/utils').CsvUtil;
-CsvUtil.loadCsv('assets/file.csv', true);
+CsvUtil.loadCsv('assets/file.csv', true, true);
 
 app.use(require('./app/routes'));
 

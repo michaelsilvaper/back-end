@@ -4,8 +4,18 @@ var csv = require('fast-csv');
 var mongoose = require('mongoose');
 var ConversationFlow = mongoose.model('ConversationFlow');
 
+function saveInMongo(json){
+    var conversationFlow = new ConversationFlow(json);
+
+    ConversationFlow.findOneAndUpdate({_id: json._id}, json, {upsert:true}).then(function(_conversationFlow){
+        console.log("CSV ["+json._id+"] loaded with success.");
+    }).catch(function(err){
+        console.log(err);
+    });
+}
+
 module.exports = {
-    loadCsv : function(path, isDefault){
+    loadCsv : function(path, isDefault, toSaveInMongo){
 
         const json = {units: [], conditions: []};
         const paths = {};
@@ -44,22 +54,20 @@ module.exports = {
         }
     
         fs.createReadStream(path)
-        .pipe(csv.parse({ headers: true }))
+        .pipe(csv.parse({ headers: true , trim: true}))
         .on('data', row => methods[row["Component"]](row))
         .on('end', rowCount => {
 
             if(isDefault) json._id = "default";
-
-            var conversationFlow = new ConversationFlow(json);
-
-            ConversationFlow.findOneAndUpdate({_id: json._id}, json, {upsert:true}).then(function(_conversationFlow){
-                console.log("CSV ["+json._id+"] loaded with success.");
-            }).catch(function(err){
-                console.log(err);
-            });
-
-            return json;
-        });
+            if(toSaveInMongo === true) {
+                saveInMongo(json);
+            }
+            
+            return true;
+        })
+        .on('error', function(err) {
+            return false;
+         });
     }
     
 }

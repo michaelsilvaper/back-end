@@ -8,7 +8,7 @@ Id,Component,Contained By,Line Source,Line Destination,Text, Expression
 8,Unit,,,,,
 9,Response,8,,,"That's great",
 10,Unit,,,,,
-11,Response,10,,,"Oh, that's bad. I can help you to feel better",
+11,Response,10,,,"  Oh, that's bad. I can help you to feel better",
 12,Response,2,,,  "What do you have in your mind?",
 13,Textarea,2,,,,
 14,Unit,,,,,

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
-    "stop": "lsof -ti :3000 | xargs kill"
+    "stop": "lsof -ti :3000 | xargs kill",
+    "test": "node index.test | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,8 @@
     "request": "^2.88.0",
     "sequelize": "^5.18.0",
     "slug": "^1.1.0",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.11.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {

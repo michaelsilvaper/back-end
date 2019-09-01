@@ -18,7 +18,8 @@ var ConversationFlowSchema = new mongoose.Schema({
           _id : false,
           type: {type: String},
           next: {type: Number}
-        }
+        },
+        next: {type: Number}
       }
     ],
     conditions : [{
