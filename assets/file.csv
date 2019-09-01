@@ -1,0 +1,26 @@
+Id,Component,Contained By,Line Source,Line Destination,Text, Expression
+2,Unit,,,,,
+3,Unit,,,,,
+4,Response,3,,,  "Hello. I'm Youper.",
+5,Response,3,,,  "How are you?",
+6,Option,3,,,  "I'm okay",
+7,Option,3,,,  "I'm not okay",
+8,Unit,,,,,
+9,Response,8,,,"That's great",
+10,Unit,,,,,
+11,Response,10,,,"Oh, that's bad. I can help you to feel better",
+12,Response,2,,,  "What do you have in your mind?",
+13,Textarea,2,,,,
+14,Unit,,,,,
+15,Response,14,,,  "Have a good day!",
+16,Condition,,,,,"input.length > 20"
+17,Unit,,,,,
+18,Response,17,,,"  You could say more, but...",
+19,Line,,6,8,,
+20,Line,,7,10,,
+21,Line,,8,2,,
+22,Line,,10,2,,
+23,Line,,13,16,,
+24,Line,,16,14,true,
+25,Line,,16,17,false,
+26,Line,,17,14,,

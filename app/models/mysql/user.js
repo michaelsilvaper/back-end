@@ -1,6 +1,6 @@
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
-var secret = require('../../config').secret;
+var secret = require('../../../config').secret;
 
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define('User', {

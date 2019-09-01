@@ -1,6 +1,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-const { User } = require('../app/models');
+const { User } = require('../app/models/mysql');
 
 passport.use(new LocalStrategy({
   usernameField: 'user[email]',

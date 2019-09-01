@@ -9,7 +9,7 @@ var http = require('http'),
     errorhandler = require('errorhandler'),
     mongoose = require('mongoose');
 
-const { User, Role } = require('./app/models');
+var { User, Role } = require('./app/models/mysql');
 
 var isProduction = process.env.NODE_ENV === 'production';
 
@@ -38,12 +38,24 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://silvaper:$ilv49eR@ec2-3-15-227-251.us-east-2.compute.amazonaws.com:27017/silvaper');
-  mongoose.set('debug', true);
+  mongoose.connect('mongodb://ec2-3-15-227-251.us-east-2.compute.amazonaws.com:27017/silvaper?authMechanism=SCRAM-SHA-1&authSource=admin', {
+    auth: {
+      user: 'silvaper',
+      password: '$ilv49eR'
+    },
+    useNewUrlParser: true,
+    useFindAndModify: false
+  });
+  mongoose.set('debug', false);
+
 }
 
-
+require('./app/models/mongo/ConversationFlow');
 require('./config/passport');
+
+
+var CsvUtil = require('./app/utils').CsvUtil;
+CsvUtil.loadCsv('assets/file.csv', true);
 
 app.use(require('./app/routes'));
 
