@@ -9,6 +9,8 @@ var http = require('http'),
     errorhandler = require('errorhandler'),
     mongoose = require('mongoose');
 
+const { User, Role } = require('./app/models');
+
 var isProduction = process.env.NODE_ENV === 'production';
 
 // Create global app object
@@ -20,6 +22,9 @@ app.use(cors());
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+//Role.create({label: "Administrator", code: "admin", permissions: 999});
+//User.create({ name: 'Michael Silva', email: 'michael@silvaper.me', idrole: 2, password: '12345', salt: "12345" });
 
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
@@ -37,7 +42,10 @@ if(isProduction){
   mongoose.set('debug', true);
 }
 
-app.use(require('./routes'));
+
+require('./config/passport');
+
+app.use(require('./app/routes'));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
