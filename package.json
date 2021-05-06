@@ -39,7 +39,7 @@
     "slug": "^1.1.0",
     "tap-spec": "^5.0.0",
     "tape": "^4.11.0",
-    "underscore": "1.8.3"
+    "underscore": "1.12.1"
   },
   "devDependencies": {
     "newman": "^4.5.4",
